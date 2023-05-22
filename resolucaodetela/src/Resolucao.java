@@ -3,7 +3,7 @@ import java.awt.Dimension;
 import java.awt.Toolkit;
 
 
-public class App {
+public class Resolucao {
     public static void main(String[] args) {
         Toolkit tk;
         tk = Toolkit.getDefaultToolkit();
