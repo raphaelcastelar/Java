@@ -19,11 +19,11 @@ public class Foreach {
         aprovados.forEach(System.out::println);
 
         System.out.println("\nLamba #2");
-        aprovados.forEach(nome -> meuImprimir("Raphael"));
+        aprovados.forEach(nome -> meuImprimir(nome));
     }
 
     static void meuImprimir(String nome){
-        System.out.println("Oi, meu nome é " + nome);
+        System.out.println("Oi, meu nome é" + nome);
 
     }
     
