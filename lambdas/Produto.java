@@ -1,0 +1,8 @@
+package lambdas;
+
+public class Produto {
+    final String nome;
+    final double preco;
+    final double desconto;
+    
+}
