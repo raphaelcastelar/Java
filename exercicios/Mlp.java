@@ -23,17 +23,14 @@ public class Mlp {
                 matriz[i][j] = (aleatorio.nextDouble() - 0.5);
     }
 
-    
     private double sigmoid(double x) {
         return 1.0 / (1.0 + Math.exp(-x));
     }
 
-    //Gradiente de erro
     private double derivadaSigmoid(double y) {
         return y * (1 - y);
     }
 
-    // Propagação para frente
     private double[] calcularSaida(double[] entrada) {
         double[] camadaOculta = new double[tamanhoOculta];
         for (int j = 0; j < tamanhoOculta; j++) {
@@ -53,9 +50,9 @@ public class Mlp {
         return saida;
     }
 
-    // Retropropagação do erro
     public void treinar(double[][] entradas, double[][] desejado, int epocas) {
         for (int epoca = 0; epoca < epocas; epoca++) {
+            double erroTotal = 0.0;
             for (int n = 0; n < entradas.length; n++) {
                 double[] entrada = entradas[n];
                 double[] alvo = desejado[n];
@@ -79,8 +76,11 @@ public class Mlp {
 
                 // Erro na saída
                 double[] erroSaida = new double[tamanhoSaida];
-                for (int k = 0; k < tamanhoSaida; k++)
+                for (int k = 0; k < tamanhoSaida; k++) {
                     erroSaida[k] = (alvo[k] - saida[k]) * derivadaSigmoid(saida[k]);
+                    // Acumula o erro quadrático para esta saída
+                    erroTotal += 0.5 * Math.pow(alvo[k] - saida[k], 2); // Erro quadrático por neurônio
+                }
 
                 // Erro na camada oculta
                 double[] erroOculta = new double[tamanhoOculta];
@@ -105,16 +105,18 @@ public class Mlp {
                 for (int j = 0; j < tamanhoOculta; j++)
                     pesosEntradaOculta[tamanhoEntrada][j] += taxaAprendizado * erroOculta[j]; // bias
             }
+            // Exibe o erro total por época
+            if (epoca % 100 == 0 || epoca == epocas - 1) {
+                System.out.println("Época " + epoca + ": Erro Total = " + erroTotal / entradas.length);
+            }
         }
     }
 
-    // Predição
     public int prever(double[] entrada) {
         double[] saida = calcularSaida(entrada);
         return (saida[0] > saida[1]) ? 0 : 1;
     }
 
-    // Impressão da matriz 4x4 para visualizar o dígito
     public static void imprimirMatriz(double[] entrada) {
         for (int i = 0; i < 16; i++) {
             System.out.print((entrada[i] == 1 ? "█" : " ") + " ");
@@ -122,7 +124,6 @@ public class Mlp {
         }
     }
 
-    // Teste
     public static void main(String[] args) {
         Mlp rede = new Mlp();
 
@@ -132,7 +133,6 @@ public class Mlp {
             {1,1,1,1, 1,0,0,1, 1,0,0,1, 1,1,1,1}, 
             {1,1,1,1, 1,0,1,1, 1,0,0,1, 1,1,1,1}, 
             {1,1,1,1, 1,0,0,1, 1,1,0,1, 1,1,1,1}, 
-
             // Um (1)
             {0,1,0,0, 1,1,0,0, 0,1,0,0, 1,1,1,0}, 
             {0,1,0,0, 0,1,0,0, 0,1,0,0, 0,1,0,0}, 
