@@ -23,10 +23,12 @@ public class Mlp {
                 matriz[i][j] = (aleatorio.nextDouble() - 0.5);
     }
 
+    
     private double sigmoid(double x) {
         return 1.0 / (1.0 + Math.exp(-x));
     }
 
+    //Gradiente de erro
     private double derivadaSigmoid(double y) {
         return y * (1 - y);
     }
