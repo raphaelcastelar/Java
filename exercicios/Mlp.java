@@ -26,7 +26,7 @@ public class Mlp {
     private double sigmoid(double x) {
         return 1.0 / (1.0 + Math.exp(-x));
     }
-
+    //gradiente de erro
     private double derivadaSigmoid(double y) {
         return y * (1 - y);
     }
