@@ -148,15 +148,15 @@ public class Mlp {
         rede.treinar(entradas, desejado, 5000);
 
         // Teste com exemplos novos
-        double[] teste0 = {1,1,1,1, 1,0,0,1, 1,0,0,1, 1,1,1,1};
-        double[] teste1 = {0,1,0,0, 0,1,0,0, 0,1,0,0, 0,1,0,0};
+        double[] teste0 = {1,0,1,1, 1,0,0,1, 1,0,0,1, 1,1,0,1};
+        
 
         System.out.println("\nTeste com número 0:");
         imprimirMatriz(teste0);
         System.out.println("Rede reconheceu como: " + rede.prever(teste0));
 
-        System.out.println("\nTeste com número 1:");
-        imprimirMatriz(teste1);
-        System.out.println("Rede reconheceu como: " + rede.prever(teste1));
+        //System.out.println("\nTeste com número 1:");
+        //imprimirMatriz(teste1);
+        //System.out.println("Rede reconheceu como: " + rede.prever(teste1));
     }
 }
