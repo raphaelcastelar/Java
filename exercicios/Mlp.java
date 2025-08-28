@@ -1,9 +1,9 @@
 import java.util.Random;
 
 public class Mlp {
-    private int tamanhoEntrada = 16;   // 16 pixels (4x4)
+    private int tamanhoEntrada = 16;   // 16 pixels
     private int tamanhoOculta = 2;     // 2 neurônios ocultos
-    private int tamanhoSaida = 2;      // Saídas: [1,0] -> "0", [0,1] -> "1"
+    private int tamanhoSaida = 2;      
     private double[][] pesosEntradaOculta; 
     private double[][] pesosOcultaSaida;
     private double taxaAprendizado = 0.5;
