@@ -1,6 +1,6 @@
 package lambdas;
 
-public class Soma implements Calculo {
+public class soma implements Calculo {
 
     @Override
     public double executar(double a, double b) {
